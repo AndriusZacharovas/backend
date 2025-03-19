@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('includes/head') %>
+<body>
+    <%- include('includes/header') %>
+
+    <main>
+        <% if (user) { %>
+            <!-- If user is logged in, show welcome message and Create Post button -->
+            <h3>Welcome, <%= user.username %>!</h3>
+            <a href="/create-post">Create Post</a>
+            <a href="/logout">Log Out</a>
+    
+            <!-- Move the Comment button inside the user check -->
+            <button><a href="/create-post">Create Post</a></button>
+
+            <!-- Display Comments -->
+            <h2>All Comments</h2>
+            <% comments.forEach(comment => { %>
+                <div class="comment-box">
+                    <h3><%= comment.title %></h3>
+                    <p><%= comment.text %></p>
+                    <small>By <%= comment.username %> | <%= comment.createdAt %></small>
+
+                    <!-- Show delete button only if the user is an admin -->
+                    <% if (user.isAdmin === 1) { %>
+                        <form action="/admin/delete-comment" method="POST" style="display:inline;">
+                            <input type="hidden" name="commentId" value="<%= comment.id %>">
+                            <button type="submit" class="delete-btn">Delete</button>
+                        </form>
+                    <% } %>
+                </div>
+            <% }) %>
+
+        <% } else { %>
+            <!-- If user is NOT logged in, show the registration form -->
+            <form action="/register" method="POST">
+                <% errors.forEach(error => { %>
+                    <p class="notice"><%= error %> </p>
+                <% }) %>
+                <fieldset>
+                    <legend>Create an account</legend>
+                    <label for="username"><small>Username</small></label>
+                    <input type="text" name="username" id="username" autocomplete="off">
+    
+                    <label for="password"><small>Password</small></label>
+                    <input type="password" name="password" id="password" autocomplete="off">
+    
+                    <br>
+                    <button type="submit">Sign Up</button>
+                </fieldset>
+            </form>
+        <% } %>
+    </main>
+
+<%- include('includes/footer') %>
+    
+</body>
+</html>

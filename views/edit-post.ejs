@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('includes/head') %>
+  <body>
+    <%- include('includes/header') %>
+
+    <main>
+      <h4>Edit Your Post</h4>
+      <form action="/update-post/<%= post.id %>" method="POST">
+        <label>Title:</label>
+        <input type="text" name="title" value="<%= post.title %>" required>
+
+        <label>Content:</label>
+        <textarea name="body" required><%= post.text %></textarea>
+
+        <button type="submit">Update Post</button>
+      </form>
+    </main>
+
+    <%- include('includes/footer') %>
+  </body>
+</html>

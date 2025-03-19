@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('includes/head') %>
+<body>
+    <%- include('includes/header') %>
+    
+    <main>
+        <h1><%= Comments.title %></h1>
+        <p><%= Comments.text %></p> 
+        <article>
+            <small>posted by <%= Comments.username %></small>
+            <p>Posted on: <%= Comments.createdAt %></p>
+        </article>
+    </main>>
+
+
+
+
+
+    <%- include('includes/footer') %>
+    
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Post Comments</title>
+</head>
+<body>
+    <h2><%= post.title %></h2>
+    <p><%= post.content %></p>
+
+    <% if (user) { %>
+        <h3>Leave a Comment</h3>
+        <form action="/post-comment/<%= post.id %>" method="POST">
+            <textarea name="comment" required></textarea>
+            <button type="submit">Post Comment</button>
+        </form>
+    <% } else { %>
+        <p><a href="/login">Log in</a> to post a comment.</p>
+    <% } %>
+
+    <h3>All Comments:</h3>
+    <% if (comments.length > 0) { %>
+        <ul>
+            <% comments.forEach(comment => { %>
+                <li><strong><%= comment.username %>:</strong> <%= comment.text %> <small>(<%= comment.createdAt %>)</small></li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <p>No comments yet.</p>
+    <% } %>
+</body>
+</html>

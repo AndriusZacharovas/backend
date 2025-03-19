@@ -1,0 +1,13 @@
+<header>
+    <h2><a href="/">Back End Training</a></h2>
+    <nav>
+        <% if (user) { %>
+            <p>Welcome, <strong><%= user.username %></strong>!</p>
+            <a href="/create-post">Create Post</a>
+            <a href="/logout">Log Out</a>
+        <% } else { %>
+            <a href="/login">Login</a>
+            <a href="/">Sign Up</a>
+        <% } %>
+    </nav>
+</header>

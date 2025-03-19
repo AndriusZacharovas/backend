@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('includes/head') %>
+<body>
+    <%- include('includes/header') %>
+    </header>
+
+    
+    <main>
+        <% if (user) { %>
+            <!-- If user is logged in, show welcome message and Create Post button -->
+            <h3>Welcome, <%= user.username %>!</h3>
+            <a href="/create-post">Create Post</a>
+            <a href="/logout">Log Out</a>
+    
+            <!-- Move the Comment button inside the user check -->
+            <button><a href="/create-post">Create Post</a></button>
+    
+        <% } else { %>
+            <!-- If user is NOT logged in, show the registration form -->
+            <form action="/login" method="POST">
+                <% errors.forEach(error => { %>
+                    <p class="notice"><%= error %> </p>
+                <% }) %>
+                <fieldset>
+                    <legend>Login</legend>
+                    <label for="username"><small>Username</small></label>
+                    <input type="text" name="username" id="username" autocomplete="off">
+    
+                    <label for="password"><small>Password</small></label>
+                    <input type="password" name="password" id="password" autocomplete="off">
+    
+                    <br>
+                    <button type="submit">Log in</button>
+                </fieldset>
+            </form>
+        <% } %>
+    
+    </main>>
+
+
+
+
+    <%- include('includes/footer') %>
+    
+</body>
+</html>
